@@ -12,13 +12,13 @@ const double goal_y = 0.0;
 bool done = false;
 
 // Tweakable Parameters
-const double normal_vel = 3;
+const double normal_vel = 3.5;
 
 const double obstacle_avoidance_vel = 2;
 const double obstacle_avoidance_turn = 0.8;
 
-const double obstacle_detection_range = 2.5;
-const double obstacle_detection_angle = 0.8;
+const double obstacle_detection_range = 1.5;
+const double obstacle_detection_angle = 1;
 
 void
 callback(Robot* robot)
@@ -27,10 +27,9 @@ callback(Robot* robot)
     double angle_to_goal = atan2(goal_y-robot->pos_y, goal_x-robot->pos_x);
     double turn_angle = robot->pos_t - angle_to_goal;
 
-    
     cout << endl;
-    cout << "robot x =" << robot->pos_x << endl;
-    cout << "robot y =" << robot->pos_y << endl;
+    cout << "Robot Position: (" << robot->pos_x << "," << robot->pos_y <<")" << endl;
+    cout << "Robot Heading: " << robot->pos_t << endl;
     
     double dx = goal_x - robot->pos_x;
     double dy = goal_y - robot->pos_y;

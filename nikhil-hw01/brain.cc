@@ -12,13 +12,13 @@ const double goal_y = 0.0;
 bool done = false;
 
 // Tweakable Parameters
-const double normal_vel = 3.5;
+const double normal_vel = 3;
 
 const double obstacle_avoidance_vel = 2;
 const double obstacle_avoidance_turn = 0.8;
 
-const double obstacle_detection_range = 1.5;
-const double obstacle_detection_angle = 1;
+const double obstacle_detection_range = 2.5;
+const double obstacle_detection_angle = 0.8;
 
 void
 callback(Robot* robot)

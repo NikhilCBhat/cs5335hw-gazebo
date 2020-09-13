@@ -12,9 +12,9 @@ const double goal_y = 0.0;
 bool done = false;
 
 // Tweakable Parameters
-const double normal_vel = 3;
+const double normal_vel = 3.5;
 
-const double obstacle_avoidance_vel = 2;
+const double obstacle_avoidance_vel = 2.5;
 const double obstacle_avoidance_turn = 0.8;
 
 const double obstacle_detection_range = 2.5;
@@ -46,6 +46,7 @@ callback(Robot* robot)
     for (LaserHit hit : robot->hits) {
         if (hit.range < obstacle_detection_range) {
             if (abs(hit.angle) < obstacle_detection_angle) {
+                cout << hit.angle << " " << hit.range << endl;
                 turn = true;
             }
         }

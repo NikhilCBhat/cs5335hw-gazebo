@@ -25,8 +25,11 @@ void
 callback(Robot* robot)
 {
 
-    double angle_to_goal = atan2(goal_y-robot->pos_y, goal_x-robot->pos_x);
-    double turn_speed = robot->pos_t - angle_to_goal;
+    /* I calculate the angle to the goal using the atan of dy/dx
+       Then I need to adjust this angle based on the current heading. 
+    */
+    double raw_angle_to_goal = atan2(goal_y-robot->pos_y, goal_x-robot->pos_x);
+    double adjusted_angle_to_goal = robot->pos_t - angle_to_goal;
 
     cout << endl;
     cout << "Robot Position: (" << robot->pos_x << "," << robot->pos_y <<")" << endl;
@@ -45,9 +48,9 @@ callback(Robot* robot)
     bool turn = false;
 
     for (LaserHit hit : robot->hits) {
+        // These are the bounds for obstacle detection
         if (hit.range < obstacle_detection_range && hit.range > 0.3) {
             if (abs(hit.angle) < obstacle_detection_angle) {
-                cout << hit.angle << " " << hit.range << endl;
                 turn = true;
             }
         }
@@ -59,8 +62,10 @@ callback(Robot* robot)
         robot->set_turn(obstacle_avoidance_turn);
     }
     else {
+        // If there is no obstacle, I turn in the direction of the goal
+        // This is adjusted based on the scaling factor so that changes don't happen too rapidly
         robot->set_vel(normal_vel);
-        robot->set_turn(turn_speed*turn_vel_scaling_factor);
+        robot->set_turn(adjusted_angle_to_goal*turn_vel_scaling_factor);
     }
 }
 

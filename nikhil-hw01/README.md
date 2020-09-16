@@ -1,6 +1,11 @@
-# Foobar
+# Description
 
 This folder contains the brain.cc program that I modified. 
+
+## Additional Information
+
+Please see the comments in the code for code documentation. 
+There is further description in the youtube video.
 
 ## Relevant Information
 
@@ -10,11 +15,11 @@ Nikhil Bhat
 
 ### URL of Git Repo
 
-[https://github.com/NikhilCBhat/cs5335hw-gazebo](https://github.com/NikhilCBhat/cs5335hw-gazebo)
+[Link to Git](https://github.com/NikhilCBhat/cs5335hw-gazebo)
 
 ### URL of Youtube Video
 
-[https://www.youtube.com/watch?v=MeNXyaVHO-s](https://www.youtube.com/watch?v=MeNXyaVHO-s)
+[Link to Youtube](https://www.youtube.com/watch?v=ANJH3BllMiA)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

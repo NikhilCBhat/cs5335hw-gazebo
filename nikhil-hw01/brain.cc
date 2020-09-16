@@ -12,12 +12,13 @@ const double goal_y = 0.0;
 bool done = false;
 
 // Tweakable Parameters
-const double normal_vel = 3.5;
+const double normal_vel = 6;
+const double turn_vel_scaling_factor = 0.5;
 
-const double obstacle_avoidance_vel = 2.5;
-const double obstacle_avoidance_turn = 0.8;
+const double obstacle_avoidance_vel = 3;
+const double obstacle_avoidance_turn = 0.7;
 
-const double obstacle_detection_range = 2.5;
+const double obstacle_detection_range = 2;
 const double obstacle_detection_angle = 0.8;
 
 void
@@ -25,7 +26,7 @@ callback(Robot* robot)
 {
 
     double angle_to_goal = atan2(goal_y-robot->pos_y, goal_x-robot->pos_x);
-    double turn_angle = robot->pos_t - angle_to_goal;
+    double turn_speed = robot->pos_t - angle_to_goal;
 
     cout << endl;
     cout << "Robot Position: (" << robot->pos_x << "," << robot->pos_y <<")" << endl;
@@ -44,7 +45,7 @@ callback(Robot* robot)
     bool turn = false;
 
     for (LaserHit hit : robot->hits) {
-        if (hit.range < obstacle_detection_range) {
+        if (hit.range < obstacle_detection_range && hit.range > 0.3) {
             if (abs(hit.angle) < obstacle_detection_angle) {
                 cout << hit.angle << " " << hit.range << endl;
                 turn = true;
@@ -59,7 +60,7 @@ callback(Robot* robot)
     }
     else {
         robot->set_vel(normal_vel);
-        robot->set_turn(turn_angle);
+        robot->set_turn(turn_speed*turn_vel_scaling_factor);
     }
 }
 

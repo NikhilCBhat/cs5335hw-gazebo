@@ -29,7 +29,7 @@ callback(Robot* robot)
        Then I need to adjust this angle based on the current heading. 
     */
     double raw_angle_to_goal = atan2(goal_y-robot->pos_y, goal_x-robot->pos_x);
-    double adjusted_angle_to_goal = robot->pos_t - angle_to_goal;
+    double adjusted_angle_to_goal = robot->pos_t - raw_angle_to_goal;
 
     cout << endl;
     cout << "Robot Position: (" << robot->pos_x << "," << robot->pos_y <<")" << endl;
